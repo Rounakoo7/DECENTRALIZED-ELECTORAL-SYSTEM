@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
-import cv2
-import numpy as np
+from flask_cors import CORS
+import cv2, numpy as np
 from skimage.filters import gabor
 
 app = Flask(__name__)
+
+# Allow CORS from any origin (for development)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 # Helper to read and convert uploaded file to grayscale NumPy image
 def image_acquisition_and_preprocessing(image):
