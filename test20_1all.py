@@ -128,31 +128,22 @@ def plot_segmentation(directory_path):
             image = cv2.imread(imagefilepath, cv2.IMREAD_GRAYSCALE)
             segmented_iris, pupil_center, pupil_radius, iris_center, iris_radius = segment_iris(image)
             normalized_iris = normalize_iris(image, pupil_center, pupil_radius, iris_center, iris_radius)
-            enhanced_iris = enhance_iris(normalized_iris)
+            
+            image2 = cv2.imread("D:\\fingerprint\iris\casia-iris\CASIA1\\2\\002_1_3.jpg", cv2.IMREAD_GRAYSCALE)
+            segmented_iris2, pupil_center2, pupil_radius2, iris_center2, iris_radius2 = segment_iris(image2)
+            normalized_iris2 = normalize_iris(image2, pupil_center2, pupil_radius2, iris_center2, iris_radius2)
+            encode_features(normalized_iris)
+            x,y = match_iris( encode_features(normalized_iris),encode_features(normalized_iris2))
             # Plotting with keypress detection
             plt.figure(figsize=(12, 6))
-            plt.subplot(1, 4, 1)
-            plt.imshow(image, cmap='gray')
+            plt.subplot(1, 1, 1)
+            plt.imshow(encode_features(normalized_iris2), cmap='gray')
             plt.title(imagefile)
             plt.axis('off')
 
-            plt.subplot(1, 4, 2)
-            plt.imshow(segmented_iris, cmap='gray')
-            plt.title('Segmented Iris')
-            plt.axis('off')
-
-            plt.subplot(1, 4, 3)
-            plt.imshow(normalized_iris, cmap='gray')
-            plt.title('Normalized Iris')
-            plt.axis('off')
-
-            plt.subplot(1, 4, 4)
-            plt.imshow(enhanced_iris, cmap='gray')
-            plt.title('Normalized Iris')
-            plt.axis('off')
 
             plt.show(block=False)
-            plt.pause(10)
+            plt.pause(100000)
             plt.close()
             print(count, imagefile)
             count+=1
@@ -212,7 +203,7 @@ def match_iris(code1, code2, threshold = 1):
     xor_result = np.bitwise_xor(code1, code2)
     hamming_distance = np.sum(xor_result) / code1.size
     if(hamming_distance <= threshold):
-        return True, hamming_distance
+        return xor_result, hamming_distance
     else:
         return False, hamming_distance
 
@@ -302,8 +293,8 @@ def check_performance(directory_path):
      #   f.write("")
 
 
-#plot_segmentation("D:\\fingerprint\iris\casia-iris\CASIA1")
-check_performance("D:\\fingerprint\iris\casia-iris\CASIA1")
+plot_segmentation("D:\\fingerprint\iris\casia-iris\CASIA1")
+#check_performance("D:\\fingerprint\iris\casia-iris\CASIA1")
 '''
 image1 = cv2.imread("D:\\fingerprint\iris\casia-iris\CASIA1\\2\\002_1_1.jpg", cv2.IMREAD_GRAYSCALE)
 image2 = cv2.imread("D:\\fingerprint\iris\casia-iris\CASIA1\\2\\002_1_3.jpg", cv2.IMREAD_GRAYSCALE)
