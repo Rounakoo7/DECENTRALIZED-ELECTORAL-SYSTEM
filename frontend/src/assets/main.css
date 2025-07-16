@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	overflow-y: scroll; /* Ensures page is still scrollable */
+}
+
+body::-webkit-scrollbar {
+	display: none; /* For Chrome, Safari, and Opera */
+}

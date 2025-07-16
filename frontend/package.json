@@ -1,0 +1,31 @@
+{
+  "name": "d-voting-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@heroicons/vue": "^2.2.0",
+    "axios": "^1.8.4",
+    "core-js": "^3.8.3",
+    "crypto-browserify": "^3.12.1",
+    "dotenv": "^16.5.0",
+    "os-browserify": "^0.3.0",
+    "path": "^0.12.7",
+    "stream-browserify": "^3.0.0",
+    "vue": "^3.2.13",
+    "vue-router": "^4.5.0",
+    "vue-toastification": "^2.0.0-rc.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "autoprefixer": "^10.4.21",
+    "hardhat": "^2.23.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.14"
+  }
+}
